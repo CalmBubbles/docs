@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+        <meta name="theme-color" content="white"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+        
+        
+        <!------------SEO-->
+        <!--Type--><meta property="og:type" content="website"/>
+        <!--Title--><meta property="og:title" content="DialogueSystem.js Manual: Animations - Custom text animations"/>
+        <!--URL--><meta property="og:url" content="https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/animations/custom"/>
+        <!--Locale--><meta property="og:locale" content="en_US"/>
+        <!--Keywords--><meta name="keywords" content="CalmBubbles, documentation, manual, JavaScript, html, js, DialogueSystem, dialogue, system, animations, custom, text">
+        
+        <!-------Description-->
+        <meta property="og:description" content="The official DialogueSystem.js Manual"/>
+        <meta name="description" content="The official DialogueSystem.js Manual"/>
+        
+        <!-------Image-->
+        <meta property="og:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
+        <!--Width--><meta property="og:image:width" content="360"/>
+        <!--Height--><meta property="og:image:height" content="360"/>
+        <!--Alt--><meta property="og:image:alt" content="DialogueSystem.js Manual: Animations - Custom text animations"/>
+        
+        <!-------Twitter Card-->
+        <!--Type--><meta name="twitter:card" content="summary"/>
+        <!--Title--><meta name="twitter:title" content="DialogueSystem.js Manual: Animations - Custom text animations"/>
+        <!--Description--><meta name="twitter:description" content="The official DialogueSystem.js Manual"/>
+        <!--Image--><meta name="twitter:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
+        
+        
+        <!------------Site-->
+        <!--Title--><title>DialogueSystem.js Manual: Animations - Custom text animations</title>
+        <!--URL--><link rel="canonical" href="https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/animations/custom"/>
+        
+        <!-------Favicon-->
+        <link rel="icon" sizes="256x256" href="/icons/js-plugins.ico" type="image/x-icon"/>
+        <link rel="shortcut icon" href="/icons/js-plugins.ico" type="image/x-icon"/>
+        
+        <!------------Styles-->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="/styles/main.css" rel="stylesheet" type="text/css">
+        <link href="/styles/rules.css" rel="stylesheet" type="text/css">
+        <link href="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/styles/github-dark.min.css" rel="stylesheet" type="text/css">
+    </head>
+    
+    <body data-site="2" data-menu="6">
+        <noscript><div>This site requires the use of JavaScript</div></noscript>
+        
+        <hr class="fadeObject">
+        
+        <header>
+            <div id="btnMenu"><img class="unselectable" src="/img/spr_btnMenu.png" alt="Menu"></div>
+            <a id="icon" class="icon" href="/works/js-plugins" rel="noreferrer noopener"><img class="unselectable" src="/img/js-plugins.png" alt="js-plugins"></a>
+            <a id="icon_freeaspect" class="icon" href="/works/js-plugins" rel="noreferrer noopener"><img class="unselectable" src="/img/js-plugins_freeaspect.png" alt="js-plugins"></a>
+            <a id="sideicon" class="icon" href="/" rel="noreferrer noopener"><img class="unselectable" src="/img/icon.png" alt="CalmBubbles"></a>
+        </header>
+        
+        <div id="menuSection"></div>
+        
+        <main class="doc">
+            <div class="doc-control">
+                <a class="previous" href="params">
+                    <div>Previous</div>
+                    Animation parameters
+                </a>
+            </div>
+            
+            
+            <div class="doc-info" style="margin-bottom: 0">
+                / <a href="../">DialogueSystem</a> / <a href="../animations">Animations</a> /
+            </div>
+            
+            
+            <h2>Custom text animations</h2>
+            
+            <p>
+                In <a href="params">one of the previous topics</a>, you are taught how to animate text in a simple way using <a href="../../../reference/DialogueSystem/DialogueTextCSSAnimation">DialogueTextCSSAnimation</a> objects. This time we will be making custom animations.
+                <br><br>
+                To start making animations, you've got to make a class inheriting the <a href="../../../reference/DialogueSystem/DialogueTextAnimation">DialogueTextAnimation</a> class. And within the class there are methods used to create behaviors.
+                
+                <blockquote>
+                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/OnSet">OnSet</a></strong> - called during setting the animation.<br>
+                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/Update">Update</a></strong> - called every frame.<br>
+                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/OnEnd">OnEnd</a></strong> - called when the animation ends.
+                </blockquote>
+                
+                And other than the animation's <a href="text#config-properties">configuration properties</a>, there are other properties that are used in it's behavior.
+                
+                <blockquote>
+                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/hasEnded">hasEnded</a></strong> - tells if the animation has ended on a frame.<br>
+                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/index1">index</a></strong> - the index of the text character this animation is attached to.<br>
+                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/time">time</a></strong> - the time that has passed since the start of the animation. If ended on loop, it resets.<br>
+                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/loopCount">loopCount</a></strong> - the amount of time the animation looped.<br>
+                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/dialogueChar">dialogueChar</a></strong> - the <a href="../../../reference/DialogueSystem/DialogueChar">DialogueChar</a> this animation is attached to.
+                </blockquote>
+            </p><br>
+            
+            
+            <h3>Animation example</h3>
+            
+            <p>
+                As an example, we're going to make a horizontal wave animation. The first thing to do is set the name of our animation.
+                
+                <pre><span class="small-text">JavaScript</span><code class="language-js">
+
+                </code></pre>
+                
+                Then after that, we make our wave behavior by overriding the Update method.
+                
+                <pre><span class="small-text">JavaScript</span><code class="language-js">
+
+                </code></pre>
+                
+                Our behavior is going to be using a graphing formula.<br>
+                The formula will be something like.
+                
+                <pre><code class="nohighlight">Intensity (I) - how high/low the wave can get.
+speed (s) - the speed of the animation.
+time (t) - the time elapsed.
+wavelength (w) - the wavelength of the wave.
+index (i) - index of the text character.
+
+position = I * sin(s * t + w * i)</code></pre>
+                
+                Now we add that to our Update method. Pre-define the intensity, speed and wavelength. Change the time variable to <a href="../../../reference/DialogueSystem/DialogueLoop/time">DialogueLoop.time</a> (learn more here), index to the animation's index property.
+                
+                <pre><span class="small-text">JavaScript</span><code class="language-js">
+
+                </code></pre>
+                
+                Add it to the manager, use it on idle. Then BAM, it's done.
+                
+                <pre><span class="small-text">JavaScript</span><code class="language-js">
+
+                </code></pre>
+                
+                "What if I want to modify the variables on Type call?". Well you can change the variables to be animation parameters. You can learn them <a href="params">here</a>.
+            </p>
+            
+            
+            <div class="doc-control">
+                <a class="previous" href="params">
+                    <div>Previous</div>
+                    Animation parameters
+                </a>
+            </div>
+        </main>
+        
+        <script src="/js/main.js" type="text/javascript"></script>
+        <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js" type="text/javascript"></script>
+        <script type="text/javascript">hljs.highlightAll();</script>
+    </body>
+</html>
