@@ -81,9 +81,40 @@
             <h2>Time logic</h2>
             
             <p>
-                Time in the system is quite complex. It works the same way games manage time, using an update loop.
+                Time in the system is quite complex. It works the same way games manage time, using an update loop.<br>
+                An update loop (usually called as a render loop) is a continuous process that perform tasks frame by frame within a program.
+                <br><br>
+                This part of the manual will explain how time works and how to use it.
+            </p><br>
+
+
+            <h3>First, what is a frame?</h3>
+
+            <p>
+                Most people these days have an insight of what a frame is.<br>
+                In dynamic datas like videos, movement is just an illusion.
+                Videos are just a collection of images switching very fast, that is enough to trick our brain for motion. 
+                Those images being switched are called <strong>frames</strong>.
+                <br><br>
+                A frame is a shot, portion, an image of a movement or change in a specific time.
+                <br><br>
+                In programming, usually in game development, frames are tasks or method calls rather than just simply said pictures.
+                For every frame, methods are called that can make hidden or visual change to an output.
+            </p><br>
+
+
+            <h3>Frame intervals</h3>
+
+            <p>
+                There are time intervals between frames, they make time more predictable and easier to use.<br>
+                If you know about games or animations, you probably know about framerate or frames per second (FPS).
+                FPS is the amount of frames to be updated in one second, this is what controls frame intervals.
+                The higher the value, the more frames get updated per second.
+                <br><br>
+                The system makes sure that the time elpased between frames are fairly constant.
+                If one frame goes too fast/slow, the next frame will try to balance it out by purposely slowing/speeding it.
             </p>
-            
+
             // output
             
             
