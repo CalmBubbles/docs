@@ -85,19 +85,21 @@
                 The best use of this, is by binding the start of your dialogue code on the Load event instead on global scope or with the <a href="https://developer.mozilla.org/docs/Web/API/Window/load_event">window.onload</a> function. This is to let your code only run once the resources of the system has loaded.
                 <br><br>
                 To bind a function to an event, you can use the <a href="../../../reference/DialogueSystem/DialogueManager/On">DialogueManager.On</a> method.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">manager.On(
+            </p>
+
+            <pre><span class="small-text">JavaScript</span><code class="language-js">manager.On(
     // Event
     DialogueEvent.Clear,
     
     // Callback
     () => alert("Dialogue box has cleared entirely")
 );</code></pre>
-                
+            
+            <p>
                 But if you want for a function to be called one time only, use <a href="../../../reference/DialogueSystem/DialogueManager/Once">DialogueManager.Once</a>.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">manager.On(DialogueEvent.Enable, () => alert("This is called only once"));</code></pre>
             </p>
+
+            <pre><span class="small-text">JavaScript</span><code class="language-js">manager.On(DialogueEvent.Enable, () => alert("This is called only once"));</code></pre>
             
             // output
             

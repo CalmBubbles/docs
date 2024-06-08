@@ -88,49 +88,57 @@
                 To make animations, you've got to create a new class inheriting the DialogueTextAnimation class, and make your own animation behavior. But for now, we aren't going to do that. Instead, we're gonna use the <a href="../../../reference/DialogueSystem/DialogueTextCSSAnimation">DialogueTextCSSAnimation</a> class. This is a built-in text animation that uses CSS keyframe animations.
                 <br><br>
                 Now to use text animations. You need to add a new instance of the animation into the <a href="../../../reference/DialogueSystem/DialogueManagerConfig/animations">animation array</a> of your manager config, this makes the animation accessible by the manager. By default, DialogueTextCSSAnimation is already there.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+            </p>
 
-                </code></pre>
-                
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
+
+            </code></pre>
+            
+            <p>
                 Before using the animation, you've got to remember that text animations have configuration properties. Make sure to set these.
+            </p>
                 
-                <blockquote id="config-properties">
-                    <strong><a href="../../../reference/DialogueSystem/NamedItem/name">name</a></strong> - name of the animation used for identification. For DialogueTextCSSAnimation, by default this is <code>"css"</code>.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/duration">duration</a></strong> - number that sets the duration of the animation in seconds.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/wait">wait</a></strong> - when true, the animation will be waited to finish before moving to the next tasks.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/loop">loop</a></strong> - tells whether the animation should play again when done.
-                </blockquote>
-                
+            <blockquote id="config-properties">
+                <strong><a href="../../../reference/DialogueSystem/NamedItem/name">name</a></strong> - name of the animation used for identification. For DialogueTextCSSAnimation, by default this is <code>"css"</code>.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/duration">duration</a></strong> - number that sets the duration of the animation in seconds.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/wait">wait</a></strong> - when true, the animation will be waited to finish before moving to the next tasks.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/loop">loop</a></strong> - tells whether the animation should play again when done.
+            </blockquote>
+            
+            <p>
                 You can configure these by changing the properties of the animation instance stored in the manager config, or by pre-defining them in its class.
+            </p>
                 
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
 
-                </code></pre>
-            </p><br>
+            </code></pre><br>
             
             
             <h3>Using the animation for idle</h3>
             
             <p>
                 Call the <a href="../../../reference/DialogueSystem/DialogueManager/Type">Type</a> method with a <a href="../../../reference/DialogueSystem/DialogueData">DialogueData</a> that has its <a href="../../../reference/DialogueSystem/DialogueData/animation">animation property</a> as the target animation's name.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+            </p>
 
-                </code></pre>
-                
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
+
+            </code></pre>
+            
+            <p>
                 When you call the Type method, nothing happens yet. This is because DialogueTextCSSAnimation has one <a href="params">animation parameter</a> you need to set. It's the animation property, where you state the CSS keyframe animation. You also set the animation's duration here.
+            </p>
                 
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
 
-                </code></pre>
-                
+            </code></pre>
+            
+            <p>
                 A simple example of using text idle animations, is by adding rgb color.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+            </p>
 
-                </code></pre>
-            </p><br>
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
+
+            </code></pre><br>
             
             
             <h3>To use the animation for transitions</h3>
@@ -140,31 +148,37 @@
                 <br><br>
                 Rather than having to work with <a href="../../../reference/DialogueSystem/DialogueAnimation">DialogueAnimation</a> objects, you use <a href="../../../reference/DialogueSystem/DialogueAnimationPreset">DialogueAnimationPreset</a> objects. This is the same object but just for storing info.<br>
                 It has the same <a href="basics#properties">properties</a>, but for text animations the uses are slightly altered.
-                
-                <blockquote>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/animation">animation</a></strong> - is now used to target a DialogueTextAnimation rather than a CSS keyframe animation.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/animationParams">animationParams</a></strong> - array of animation parameters. This is also present in DialogueAnimation objects, but useless.
-                </blockquote>
-                
-                Now in the manager's <a href="../../../reference/DialogueSystem/DialogueManager/animation">animation config</a>, the text transitions are stored by a <a href="../../../reference/DialogueSystem/DialogueTextAnimationData">DialogueTextAnimationData</a>, as the <a href="../../../reference/DialogueSystem/DialogueAnimationConfig/text">text property</a>. Which has 2 DialogueAnimationPreset properties.
-                
-                <blockquote>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimationData/onAppend">onAppend</a></strong> - plays when the text character appends.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimationData/onClear">onClear</a></strong> - plays when the character clears. This is the same for all text characters present in a clear event.
-                </blockquote>
-                
-                Note that text transitions can never loop. DialogueTextAnimation instances will always have their loop property as <code>false</code>.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
-
-                </code></pre>
-                
-                A simple example of using text transitions, is by adding opacity fade when text is cleared.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
-
-                </code></pre>
             </p>
+
+            <blockquote>
+                <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/animation">animation</a></strong> - is now used to target a DialogueTextAnimation rather than a CSS keyframe animation.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/animationParams">animationParams</a></strong> - array of animation parameters. This is also present in DialogueAnimation objects, but useless.
+            </blockquote>
+            
+            <p>
+                Now in the manager's <a href="../../../reference/DialogueSystem/DialogueManager/animation">animation config</a>, the text transitions are stored by a <a href="../../../reference/DialogueSystem/DialogueTextAnimationData">DialogueTextAnimationData</a>, as the <a href="../../../reference/DialogueSystem/DialogueAnimationConfig/text">text property</a>. Which has 2 DialogueAnimationPreset properties.
+            </p>
+                
+            <blockquote>
+                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimationData/onAppend">onAppend</a></strong> - plays when the text character appends.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimationData/onClear">onClear</a></strong> - plays when the character clears. This is the same for all text characters present in a clear event.
+            </blockquote>
+            
+            <p>
+                Note that text transitions can never loop. DialogueTextAnimation instances will always have their loop property as <code>false</code>.
+            </p>
+                
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
+
+            </code></pre>
+            
+            <p>
+                A simple example of using text transitions, is by adding opacity fade when text is cleared.
+            </p>
+                
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
+                
+            </code></pre>
             
             
             <div class="doc-control">

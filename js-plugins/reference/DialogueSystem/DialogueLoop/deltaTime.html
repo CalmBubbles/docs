@@ -73,9 +73,9 @@
             
             <p>
                 (Read Only) The interval in seconds between the last and current frame.
+                <br><br>
+                This is used to gain consistent updates.
             </p>
-            
-            This is used to gain consistent updates.
             
             <pre><span class="small-text">HTML</span><code class="language-html">&lt;!--Set text--&gt;
 fps : &lt;span id="fps"&gt;...&lt;/span&gt;&lt;br&gt;
@@ -101,29 +101,33 @@ let doneA = 0;
 let doneB = 0;
 
 // Update fps meter every half of a sec
-DialogueLoop.Append(() =&gt; {
+DialogueLoop.Append(() => {
     fps.textContent = parseInt(1 / DialogueLoop.deltaTime);
 }, 0.5);
 
 // Generate random lag spikes
-DialogueLoop.Append(() =&gt; {
-    if (DialogueLoop.time &lt; 0.5) return;
+DialogueLoop.Append(() => {
+    if (DialogueLoop.time < 0.5) return;
     
     const targetTime = performance.now() + 50 * Math.random();
     
-    while (performance.now() &lt; targetTime) { }
-}, 0, () =&gt; doneA && doneB);
+    while (performance.now() < targetTime) { }
+}, 0, () => doneA && doneB);
 
 // Update ball A
-DialogueLoop.Append(() =&gt; {
-    // Use fps slice as multiplier 
-    posA += 250 * (1 / DialogueLoop.targetFrameRate);
+DialogueLoop.Append(() => {
+    // Move 4 units "per frame"
+    //
+    // This only works fine if fps is exactly 60
+    // Lag and lag-spikes will break this
+    // Movement varies
+    posA += 4;
     
     // Set position and update timer
     pain.style.transform = `translateX(${posA}%)`;
     timeA.textContent = DialogueLoop.time;
     
-    if (posA &lt; 650) return;
+    if (posA < 650) return;
     
     // if done
     
@@ -132,30 +136,35 @@ DialogueLoop.Append(() =&gt; {
     // Set ball color and snap it to target position
     pain.style.background = "green";
     pain.style.transform = "translateX(650%)";
-}, 0, () =&gt; doneA);
+}, 0, () => doneA);
 
 // Update ball B
-DialogueLoop.Append(() =&gt; {
-    // Use deltaTime as multipier
-    posB += 250 * DialogueLoop.deltaTime;
+DialogueLoop.Append(() => {
+    // Move 240 units "per second"
+    //
+    // This is the same as ball A
+    // except using deltaTime
+    //
+    // This works in every fps
+    // Lag and lag-spikes will not break this
+    // Movement is constant
+    posB += 240 * DialogueLoop.deltaTime;
     
     smooth.style.transform = `translateX(${posB}%)`;
     timeB.textContent = DialogueLoop.time;
     
-    if (posB &lt; 650) return;
+    if (posB < 650) return;
     
     doneB = true;
     
     smooth.style.background = "green";
     smooth.style.transform = "translateX(650%)";
-}, 0, () =&gt; doneB);
+}, 0, () => doneB);
 
 
 /**
- * NOTE:
- *     deltaTime is similar to
- *     fps slice (1 / targetFrameRate)
- *     during smooth runtime or minimum lag
+ * NOTE: Ball B will finish around 2.7 seconds
+ *       Ball A hovever, varies
  */</code></pre>
             
             <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/reference/DialogueLoop/deltaTime" data-width="full" data-relHeight="60" data-refreshable="true"></div>

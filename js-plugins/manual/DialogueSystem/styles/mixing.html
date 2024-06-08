@@ -84,11 +84,13 @@
                 You can mix up <a href="../../../reference/DialogueSystem/DialogueStyle">DialogueStyle</a> objects into one.
                 <br><br>
                 First you need to have a DialogueStyle object, which will be the default style of the mix. Then you can call the default style's <a href="../../../reference/DialogueSystem/DialogueStyle/Create">Create</a> method and pass the other styles onto it. The Create method will return a new DialogueStyle object, containing the mixed properties.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+            </p>
 
-                </code></pre>
-                
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
+
+            </code></pre>
+            
+            <p>
                 The mixing works by overriding the default properties with the properties of the other styles consecutively. But if one of the other styles' property is blank or null, the previous property will not be overriden.
                 
                 // img

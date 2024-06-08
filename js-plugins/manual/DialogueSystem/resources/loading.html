@@ -81,9 +81,11 @@
             <h2>Loading resources</h2>
             
             <p>
-                Loading resources is easy. For sprites, just create a new <a href="../../../reference/DialogueSystem/DialogueSprite">DialogueSprite</a> object.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+                Loading resources is easy. For sprites, just create a new <a href="../../../reference/DialogueSystem/DialogueSprite">DialogueSprite</a> object.<br>
+                You are obliged to use separate sprites and not sprite sheets.
+            </p>
+
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
 const sprite = new DialogueSprite(
     // Name for identification
     "",
@@ -91,20 +93,23 @@ const sprite = new DialogueSprite(
     // Source file
     ""
 );
-                </code></pre>
-                
+            </code></pre>
+            
+            <p>
                 And for audio clips, just do the same from sprites. But use <a href="../../../reference/DialogueSystem/DialogueAudioClip">DialogueAudioClip</a> instead.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+            </p>
+
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
 const audio = new DialogueAudioClip("", "");
-                </code></pre>
-                
+            </code></pre>
+            
+            <p>
                 And to find out if they're loaded and ready for use, just check their <strong>isLoaded</strong> property.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+            </p>
+
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
 alert(`loaded sprite: ${sprite.isLoaded}\nloaded audio: ${audio.isLoaded}`);
                 </code></pre>
-            </p>
             
             // output
             

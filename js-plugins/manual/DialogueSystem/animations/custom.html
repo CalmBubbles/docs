@@ -80,44 +80,51 @@
                 In <a href="params">one of the previous topics</a>, you are taught how to animate text in a simple way using <a href="../../../reference/DialogueSystem/DialogueTextCSSAnimation">DialogueTextCSSAnimation</a> objects. This time we will be making custom animations.
                 <br><br>
                 To start making animations, you've got to make a class inheriting the <a href="../../../reference/DialogueSystem/DialogueTextAnimation">DialogueTextAnimation</a> class. And within the class there are methods used to create behaviors.
-                
-                <blockquote>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/OnSet">OnSet</a></strong> - called during setting the animation.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/Update">Update</a></strong> - called every frame.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/OnEnd">OnEnd</a></strong> - called when the animation ends.
-                </blockquote>
-                
+            </p>>
+
+            <blockquote>
+                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/OnSet">OnSet</a></strong> - called during setting the animation.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/Update">Update</a></strong> - called every frame.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/OnEnd">OnEnd</a></strong> - called when the animation ends.
+            </blockquote>
+            
+            <p>
                 And other than the animation's <a href="text#config-properties">configuration properties</a>, there are other properties that are used in it's behavior.
+            </p>
                 
-                <blockquote>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/hasEnded">hasEnded</a></strong> - tells if the animation has ended on a frame.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/index1">index</a></strong> - the index of the text character this animation is attached to.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/time">time</a></strong> - the time that has passed since the start of the animation. If ended on loop, it resets.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/loopCount">loopCount</a></strong> - the amount of time the animation looped.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/dialogueChar">dialogueChar</a></strong> - the <a href="../../../reference/DialogueSystem/DialogueChar">DialogueChar</a> this animation is attached to.
-                </blockquote>
-            </p><br>
+            <blockquote>
+                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/hasEnded">hasEnded</a></strong> - tells if the animation has ended on a frame.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/index1">index</a></strong> - the index of the text character this animation is attached to.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/time">time</a></strong> - the time that has passed since the start of the animation. If ended on loop, it resets.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/loopCount">loopCount</a></strong> - the amount of time the animation looped.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/dialogueChar">dialogueChar</a></strong> - the <a href="../../../reference/DialogueSystem/DialogueChar">DialogueChar</a> this animation is attached to.
+            </blockquote><br>
             
             
             <h3>Animation example</h3>
             
             <p>
                 As an example, we're going to make a horizontal wave animation. The first thing to do is set the name of our animation.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+            </p>
 
-                </code></pre>
-                
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
+
+            </code></pre>
+            
+            <p>
                 Then after that, we make our wave behavior by overriding the Update method.
+            </p>
                 
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
 
-                </code></pre>
-                
+            </code></pre>
+            
+            <p>
                 Our behavior is going to be using a graphing formula.<br>
                 The formula will be something like.
+            </p>
                 
-                <pre><code class="nohighlight">Intensity (I) - how high/low the wave can get.
+            <pre><code class="nohighlight">Intensity (I) - how high/low the wave can get.
 speed (s) - the speed of the animation.
 time (t) - the time elapsed.
 wavelength (w) - the wavelength of the wave.
@@ -125,18 +132,24 @@ index (i) - index of the text character.
 
 position = I * sin(s * t + w * i)</code></pre>
                 
-                Now we add that to our Update method. Pre-define the intensity, speed and wavelength. Change the time variable to <a href="../../../reference/DialogueSystem/DialogueLoop/time">DialogueLoop.time</a> (learn more here), index to the animation's index property.
+            <p>
+                Now we add that to our Update method. Pre-define the intensity, speed and wavelength.
+                Change the time variable to <a href="../../../reference/DialogueSystem/DialogueLoop/time">DialogueLoop.time</a> (learn more <a href="../time/loops">here</a>), index to the animation's index property.
+            </p>
                 
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
 
-                </code></pre>
-                
+            </code></pre>
+            
+            <p>
                 Add it to the manager, use it on idle. Then BAM, it's done.
+            </p>
                 
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
 
-                </code></pre>
-                
+            </code></pre>
+            
+            <p>
                 "What if I want to modify the variables on Type call?". Well you can change the variables to be animation parameters. You can learn them <a href="params">here</a>.
             </p>
             

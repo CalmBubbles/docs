@@ -89,51 +89,57 @@
             
             <p>
                 To use parameters in idle, in the Type call. Add a new <a href="../../../reference/DialogueSystem/Property">Property</a> object to the <a href="../../../reference/DialogueSystem/DialogueData/animationParams">animationParams property</a> of the <a href="../../../reference/DialogueSystem/DialogueData">DialogueData</a>.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+            </p>
+            
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
 
-                </code></pre>
-            </p><br>
+            </code></pre><br>
             
             
             <h3>Using parameters in transitions</h3>
             
             <p>
                 In transitions, there is an <a href="../../../reference/DialogueSystem/DialogueAnimationPreset/animationParams">animationParams property</a> in <a href="../../../reference/DialogueSystem/DialogueAnimationPreset">DialogueAnimationPreset</a> objects. Add a new Property object there.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
+            </p>
+            
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
 
-                </code></pre>
-            </p><br>
+            </code></pre><br>
             
             
             <h3>Making parameters</h3>
             
             <p>
                 To make parameters, in the animation class, override or change it's <a href="../../../reference/DialogueSystem/DialogueTextAnimation/OnSet">OnSet</a> method. Make it so, that the method takes in one parameter. This is where the passed values will go through.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
-
-                </code></pre>
-                
-                Now add the properties you want to your class.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
-
-                </code></pre>
-                
-                In the OnSet method, set the class properties by getting its values from the method parameter. The method parameter is a <a href="../../../reference/DialogueSystem/NamedArray">NamedArray</a>, we can use its <a href="../../../reference/DialogueSystem/NamedArray/Find">Find</a> method and then use the Property's <a href="../../../reference/DialogueSystem/Property/value">value property</a>.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
-
-                </code></pre>
-                
-                Now you can use the parameters.
-                
-                <pre><span class="small-text">JavaScript</span><code class="language-js">
-
-                </code></pre>
             </p>
+
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
+
+            </code></pre>
+            
+            <p>
+                Now add the properties you want to your class.
+            </p>
+                
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
+
+            </code></pre>
+            
+            <p>
+                In the OnSet method, set the class properties by getting its values from the method parameter. The method parameter is a <a href="../../../reference/DialogueSystem/NamedArray">NamedArray</a>, we can use its <a href="../../../reference/DialogueSystem/NamedArray/Find">Find</a> method and then use the Property's <a href="../../../reference/DialogueSystem/Property/value">value property</a>.
+            </p>
+            
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
+
+            </code></pre>
+            
+            <p>
+                Now you can use the parameters.
+            </p>
+                
+            <pre><span class="small-text">JavaScript</span><code class="language-js">
+
+            </code></pre>
             
             
             <div class="doc-control">

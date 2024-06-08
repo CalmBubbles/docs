@@ -83,14 +83,14 @@
             <p>
                 A main part in making animations are <a href="../../../reference/DialogueSystem/DialogueAnimation">DialogueAnimation</a> objects. They are used to store animation data.<br>
                 Within the object, there are properties that are used within animations.
-                
-                <blockquote id="propertries">
-                    <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/animation">animation</a></strong> - string where the CSS animation property is stated, but you cannot state it's duration here.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/duration">duration</a></strong> - number that sets the duration of the animation in seconds.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/wait">wait</a></strong> - when true, the animation will be waited to finish before moving to the next tasks.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/callback">callback</a></strong> - function which will be called when the animation finishes.
-                </blockquote>
-            </p><br>
+            </p>
+            
+            <blockquote id="propertries">
+                <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/animation">animation</a></strong> - string where the CSS animation property is stated, but you cannot state it's duration here.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/duration">duration</a></strong> - number that sets the duration of the animation in seconds.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/wait">wait</a></strong> - when true, the animation will be waited to finish before moving to the next tasks.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/callback">callback</a></strong> - function which will be called when the animation finishes.
+            </blockquote><br>
             
             
             <h3>To actually set animations</h3>
@@ -98,20 +98,24 @@
             <p>
                 You've got to use a <a href="../../../reference/DialogueSystem/DialogueAnimationConfig">DialogueAnimationConfig</a>. Every manager has an animation config as it's <a href="../../../reference/DialogueSystem/DialogueManager/animation">animation property</a>. This is where animations are stored for transitions.<br>
                 It has these as properties.
+            </p>
                 
-                <blockquote>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueAnimationConfig/box">box</a></strong> - transitions for the dialogue box.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueAnimationConfig/portrait">portrait</a></strong> - transitions for the portrait image.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueAnimationConfig/lineClear">lineClear</a></strong> - a DialogueAnimation that is played to the text line when it clears.
-                </blockquote>
-                
+            <blockquote>
+                <strong><a href="../../../reference/DialogueSystem/DialogueAnimationConfig/box">box</a></strong> - transitions for the dialogue box.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueAnimationConfig/portrait">portrait</a></strong> - transitions for the portrait image.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueAnimationConfig/lineClear">lineClear</a></strong> - a DialogueAnimation that is played to the text line when it clears.
+            </blockquote>
+
+            <p>
                 The box and portrait animations are stored by <a href="../../../reference/DialogueSystem/DialogueBoxNPortraitAnimationData">DialogueBoxNPortraitAnimationData</a> objects, which have 2 DialogueAnimation properties.
+            </p>
                 
-                <blockquote>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueBoxNPortraitAnimationData/onEnable">onEnable</a></strong> - played when those objects enable.<br>
-                    <strong><a href="../../../reference/DialogueSystem/DialogueBoxNPortraitAnimationData/onDisable">onDisable</a></strong> - played when those objects disable.
-                </blockquote>
-                
+            <blockquote>
+                <strong><a href="../../../reference/DialogueSystem/DialogueBoxNPortraitAnimationData/onEnable">onEnable</a></strong> - played when those objects enable.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueBoxNPortraitAnimationData/onDisable">onDisable</a></strong> - played when those objects disable.
+            </blockquote>
+            
+            <p>
                 A simple example of using animations is by making transitions for the dialogue box.
             </p>
             
