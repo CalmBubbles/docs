@@ -87,21 +87,66 @@
                 To bind a function to an event, you can use the <a href="../../../reference/DialogueSystem/DialogueManager/On">DialogueManager.On</a> method.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">manager.On(
-    // Event
+            <pre><span class="small-text">JavaScript</span><code class="language-js">diaManager.On(
+    // event
     DialogueEvent.Clear,
     
-    // Callback
-    () => alert("Dialogue box has cleared entirely")
-);</code></pre>
+    // callback
+    () =&gt; alert("Dialogue box has cleared entirely")
+);</code></pre><br>
             
             <p>
                 But if you want for a function to be called one time only, use <a href="../../../reference/DialogueSystem/DialogueManager/Once">DialogueManager.Once</a>.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">manager.On(DialogueEvent.Enable, () => alert("This is called only once"));</code></pre>
-            
-            // output
+            <pre><span class="small-text">JavaScript</span><code class="language-js">diaManager.Once(DialogueEvent.Enable, () => alert("This is called only once"));</code></pre><br>
+
+            <p>
+                And to unbind. First, we have to replace the first code with a new one that is using a cached callback.
+            </p>
+
+            <pre><span class="small-text">JavaScript</span><code class="language-js">// diaManager.On(
+//     // event
+//     DialogueEvent.Clear,
+//     
+//     // callback
+//     () =&gt; alert("Dialogue box has cleared entirely")
+// );
+
+
+const clearCall = () =&gt; alert("Dialogue box has cleared entirely");
+
+diaManager.On(DialogueEvent.Clear, clearCall);</code></pre>
+
+            <p>
+                If we want to unbind the callback, we just call same binding function again.
+            </p>
+
+            <pre><span class="small-text">JavaScript</span><code class="language-js">async function Main ()
+{
+    // ...
+    // lines of code goes here
+
+
+    // Since `clearCall` already exists
+    // in the set of `On` binds, rebinding
+    // it just removes the bind
+    //
+    //                       vvvv
+    // If we use `diaManager.Once(DialogueEvent.Clear, clearCall)`
+    // to rebind it, it does not remove the bind.
+    // Instead, it adds a new bind to the `Once` set
+    diaManager.On(DialogueEvent.Clear, clearCall);
+}</code></pre>
+
+            <p>
+                This also works with the binds in the DialogueManager.Once set, as long as their callback has not been called yet.
+                <br><br>
+                Remember that you can only unbind DialogueManager.On callbacks with DialogueManager.On.
+                And you can only unbind DialogueManager.Once callbacks with DialogueManager.Once.
+            </p><br>
+
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/manual/templates/dep?s=..%2F..%2Fevents%2Fbinding" data-width="full" data-relHeight="22.5" data-refreshable="true"></div>
             
             
             <div class="doc-control">
@@ -117,6 +162,7 @@
         </main>
         
         <script src="/js/main.js" type="text/javascript"></script>
+        <script src="/js/CodeOutputs.js" type="text/javascript"></script>
         <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js" type="text/javascript"></script>
         <script type="text/javascript">hljs.highlightAll();</script>
     </body>

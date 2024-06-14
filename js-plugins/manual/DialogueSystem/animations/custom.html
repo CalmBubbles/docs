@@ -80,7 +80,7 @@
                 In <a href="params">one of the previous topics</a>, you are taught how to animate text in a simple way using <a href="../../../reference/DialogueSystem/DialogueTextCSSAnimation">DialogueTextCSSAnimation</a> objects. This time we will be making custom animations.
                 <br><br>
                 To start making animations, you've got to make a class inheriting the <a href="../../../reference/DialogueSystem/DialogueTextAnimation">DialogueTextAnimation</a> class. And within the class there are methods used to create behaviors.
-            </p>>
+            </p>
 
             <blockquote>
                 <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/OnSet">OnSet</a></strong> - called during setting the animation.<br>
@@ -107,24 +107,31 @@
                 As an example, we're going to make a horizontal wave animation. The first thing to do is set the name of our animation.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
-
-            </code></pre>
+            <pre><span class="small-text">JavaScript</span><code class="language-js">class TextWave extends DialogueTextAnimation
+{
+    name = "wave";
+}</code></pre>
             
             <p>
                 Then after that, we make our wave behavior by overriding the Update method.
             </p>
                 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">class TextWave extends DialogueTextAnimation
+{
+    name = "wave";
 
-            </code></pre>
+    Update ()
+    {
+        // anything here gets executed every frame
+    }
+}</code></pre>
             
             <p>
                 Our behavior is going to be using a graphing formula.<br>
                 The formula will be something like.
             </p>
                 
-            <pre><code class="nohighlight">Intensity (I) - how high/low the wave can get.
+            <pre><code class="nohighlight">intensity (I) - how high/low the wave can get.
 speed (s) - the speed of the animation.
 time (t) - the time elapsed.
 wavelength (w) - the wavelength of the wave.
@@ -137,21 +144,53 @@ position = I * sin(s * t + w * i)</code></pre>
                 Change the time variable to <a href="../../../reference/DialogueSystem/DialogueLoop/time">DialogueLoop.time</a> (learn more <a href="../time/loops">here</a>), index to the animation's index property.
             </p>
                 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">class TextWave extends DialogueTextAnimation
+{
+    name = "wave";
 
-            </code></pre>
+    Update ()
+    {
+        // position = I * sin(s * t + w * i)
+        const pos = 12 * Math.sin(10 * DialogueLoop.time + 0.4 * this.index);
+
+        // set the position by element's style
+        this.dialogueChar.style.transform = `translateY(${pos}%)`;
+    }
+}</code></pre>
             
             <p>
                 Add it to the manager, use it on idle. Then BAM, it's done.
             </p>
                 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">diaManager.config.animations.items.push(new TextWave());
 
-            </code></pre>
+
+/*
+
+It's more efficient to add several animations to the manager this way.
+
+    diaManager.config.animations.items = [
+        new TextWave(),
+        new FadingTextWave()
+    ];
+
+
+But that removes the pre-defined DialogueTextCSSAnimation.
+You can keep it though by doing this.
+
+    diaManager.config.animations.items = [
+        new DialogueTextCSSAnimation(),
+        new TextWave(),
+        new FadingTextWave()
+    ];
+
+*/</code></pre>
             
             <p>
                 "What if I want to modify the variables on Type call?". Well you can change the variables to be animation parameters. You can learn them <a href="params">here</a>.
             </p>
+
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/manual/templates/omori?s=..%2F..%2Fanimations%2Fcustom" data-width="full" data-relHeight="42" data-refreshable="true"></div>
             
             
             <div class="doc-control">
@@ -163,6 +202,7 @@ position = I * sin(s * t + w * i)</code></pre>
         </main>
         
         <script src="/js/main.js" type="text/javascript"></script>
+        <script src="/js/CodeOutputs.js" type="text/javascript"></script>
         <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js" type="text/javascript"></script>
         <script type="text/javascript">hljs.highlightAll();</script>
     </body>

@@ -126,8 +126,10 @@ DialogueLoop.Append(() =&gt; i++);</code></pre>
 DialogueLoop.Append(
     () =&gt; j++, // j increases by every delay
 
-    10 // 10s delay
-);</code></pre><br>
+    3 // 3s delay
+);</code></pre>
+
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/manual/time/loops/0" data-width="280px" data-height="200px" data-refreshable="true"></div><br><br>
 
 
             <h3>Ending tasks</h3>
@@ -143,7 +145,7 @@ DialogueLoop.Append(
 
 DialogueLoop.Append(
     // spam every frame
-    () =&gt; document.body.append("AAAAAAAAAAAAAAAAA", document.createElement("br")),
+    () =&gt; document.body.append(Math.random().toString(36).substring(2), document.createElement("br")),
 
     null, // You can still use the 2nd parameter,
           // use `null` if you're not going using it
@@ -154,11 +156,13 @@ DialogueLoop.Append(
 
 
 // sets the endTask variable to true once clicked
-endButton.onclick = () => endTask = true;</code></pre>
+endButton.onclick = () =&gt; endTask = true;</code></pre>
             
             <p>
                 Once the 3rd parameter is true, the task is called once more before ending it.
-            </p><br>
+            </p>
+            
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/manual/time/loops/1" data-width="280px" data-height="200px" data-refreshable="true"></div><br><br>
 
 
             <h3>Time</h3>
@@ -202,10 +206,31 @@ DialogueLoop.Append(() =&gt; position += 4);</code></pre>
 
             <p>
                 Delta time is the amount of seconds between the current and the last frame.
+                Its value varies in a way that "negates" any inconsistencies within updates when used correctly.
+                <br><br>
+                Although not recommended, you can use <a href="../../../reference/DialogueSystem/DialogueLoop/unscaledDeltaTime">unscaledDeltaTime</a> if you want your updates to not be affected by <a href="../../../reference/DialogueSystem/DialogueLoop/timeScale">timeScale</a>.
                 <br><br>
                 With the use of delta time, you can make your code run without breaking.
-                
+            </p>
 
+            <pre><span class="small-text">JavaScript</span><code class="language-js">// move ball 240 units "per second"
+DialogueLoop.Append(() =&gt; position += 240 * DialogueLoop.deltaTime);</code></pre>
+
+            <p>
+                This code is infact the same speed as the one without delta time, ONLY if the first one runs in 60 fps no lag and interuptions.
+                Unlike the first one, this code now runs <strong>"per second"</strong> and not per frame.
+                It will now run consistently, lag and lag-spikes no longer interupts it.
+                <br><br>
+                Here's a comparison of the code with and without the use of delta time.
+                To make a better comparison, we added lag spikes to occur.
+                Ball A (top) does not use delta time, while ball B (bottom) does.
+                It is expected for ball B to finish around 2.7 seconds, and ball A to go randomly.
+            </p>
+
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/reference/DialogueLoop/deltaTime" data-width="full" data-relHeight="60" data-refreshable="true"></div><br>
+
+            <p>
+                Aight, now go use delta time in your update code or something.
             </p>
             
             
@@ -222,6 +247,7 @@ DialogueLoop.Append(() =&gt; position += 4);</code></pre>
         </main>
         
         <script src="/js/main.js" type="text/javascript"></script>
+        <script src="/js/CodeOutputs.js" type="text/javascript"></script>
         <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js" type="text/javascript"></script>
         <script type="text/javascript">hljs.highlightAll();</script>
     </body>

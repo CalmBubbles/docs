@@ -9,10 +9,10 @@
         
         <!------------SEO-->
         <!--Type--><meta property="og:type" content="website"/>
-        <!--Title--><meta property="og:title" content="DialogueSystem.js Manual: Time and Update - Waiting for time"/>
-        <!--URL--><meta property="og:url" content="https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/time/wait"/>
+        <!--Title--><meta property="og:title" content="DialogueSystem.js Manual: Time and Update - Controlling"/>
+        <!--URL--><meta property="og:url" content="https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/time/ctrl"/>
         <!--Locale--><meta property="og:locale" content="en_US"/>
-        <!--Keywords--><meta name="keywords" content="CalmBubbles, documentation, manual, JavaScript, html, js, DialogueSystem, dialogue, system, time, wait">
+        <!--Keywords--><meta name="keywords" content="CalmBubbles, documentation, manual, JavaScript, html, js, DialogueSystem, dialogue, system, time, ctrl">
         
         <!-------Description-->
         <meta property="og:description" content="The official DialogueSystem.js Manual"/>
@@ -22,18 +22,18 @@
         <meta property="og:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
         <!--Width--><meta property="og:image:width" content="360"/>
         <!--Height--><meta property="og:image:height" content="360"/>
-        <!--Alt--><meta property="og:image:alt" content="DialogueSystem.js Manual: Time and Update - Waiting for time"/>
+        <!--Alt--><meta property="og:image:alt" content="DialogueSystem.js Manual: Time and Update - Controlling"/>
         
         <!-------Twitter Card-->
         <!--Type--><meta name="twitter:card" content="summary"/>
-        <!--Title--><meta name="twitter:title" content="DialogueSystem.js Manual: Time and Update - Waiting for time"/>
+        <!--Title--><meta name="twitter:title" content="DialogueSystem.js Manual: Time and Update - Controlling"/>
         <!--Description--><meta name="twitter:description" content="The official DialogueSystem.js Manual"/>
         <!--Image--><meta name="twitter:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
         
         
         <!------------Site-->
-        <!--Title--><title>DialogueSystem.js Manual: Time and Update - Waiting for time</title>
-        <!--URL--><link rel="canonical" href="https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/time/wait"/>
+        <!--Title--><title>DialogueSystem.js Manual: Time and Update - Controlling</title>
+        <!--URL--><link rel="canonical" href="https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/time/ctrl"/>
         
         <!-------Favicon-->
         <link rel="icon" sizes="256x256" href="/icons/js-plugins.ico" type="image/x-icon"/>
@@ -43,7 +43,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <link href="/styles/main.css" rel="stylesheet" type="text/css">
         <link href="/styles/rules.css" rel="stylesheet" type="text/css">
-        <link href="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/styles/github-dark.min.css" rel="stylesheet" type="text/css">
     </head>
     
     <body data-site="2" data-menu="7">
@@ -62,13 +61,13 @@
         
         <main class="doc">
             <div class="doc-control">
-                <a class="previous" href="../time">
+                <a class="previous" href="loops">
                     <div>Previous</div>
-                    Time and Update
+                    Update loops
                 </a>
-                <a class="next" href="logic">
+                <a class="next" href="../styles">
                     <div>Next</div>
-                    Time logic
+                    Text Styles
                 </a>
             </div>
             
@@ -78,50 +77,64 @@
             </div>
             
             
-            <h2>Waiting for time</h2>
+            <h2>Controlling</h2>
             
             <p>
-                With events and stories or anything with dialogues and text, there's always a pause. It may be short, it may be long, but there's still a pause.
-                <br><br>
-                To add pauses between tasks and executions, you can use the <a href="../../../reference/DialogueSystem/DialogueLoop/Delay">DialogueLoop.Delay</a> method.
-                The Delay method is asynchronous, so you have to call it within an asynchronous environment.
-                Await a Delay method call on the part you want to get a pause and pass in the amount of time in seconds you want to wait for.
+                The system has several variables you can use to control time flow.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">// asynchronous method
-async function Main ()
-{
-    // wait for 4 seconds to admire cat
-    await DialogueLoop.Delay(4);
 
-    charName = "MEWO";
-    await DiaSetActive(true);
-    DialogueAudioSource.global.Play(diaManager.config.audios.Find("meow"));
-    await diaManager.Type("Meow? ", 1.2, new DialogueData({
-        audio: "default",
-        delayAfter: 0.75
-    }));
-    await diaManager.Type("(Waiting for something to happen?)", 1.2, new DialogueData({ audio: "default" }));
-}</code></pre>
-            
-            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/manual/templates/omori?s=..%2F..%2Ftime%2Fwait" data-width="full" data-relHeight="42" data-refreshable="true"></div>
+            <h4><a href="../../../reference/DialogueSystem/DialogueLoop/targetFrameRate">targetFrameRate</a></h4>
+
+            <blockquote>
+                This is the target frames per second (FPS) of the system.
+                How frequently frame updates in one second.
+                This variable controls how the whole system runs.
+                <br><br>
+                The higher the value, the more frequent updates happen and feel smoother.
+                But the higher the value, the more power it requires to run.
+                If you set it on a high value and use it on a device that cannot handle it.
+                Rather than making the system feel smoother, you're gonna make it feel worse.
+                <br><br>
+                By default this is <code>60</code> FPS, which is recommended.
+            </blockquote><br>
+
+
+            <h4><a href="../../../reference/DialogueSystem/DialogueLoop/timeScale">timeScale</a></h4>
+
+            <blockquote>
+                This value controls how fast time <strong>seems</strong> to flow.
+                Scales <a href="../../../reference/DialogueSystem/DialogueLoop/deltaTime">deltaTime</a> and affects <a href="../../../reference/DialogueSystem/DialogueLoop/time">time</a>.
+                The higher the value, the faster the time.
+                This does not affect FPS and how frequent updates happen.
+                <br><br>
+                The default value is <code>1</code>.
+            </blockquote><br>
+
+
+            <h4><a href="../../../reference/DialogueSystem/DialogueLoop/maximumDeltaTime">maximumDeltaTime</a></h4>
+
+            <blockquote>
+                Limits the value of deltaTime before passing it to timeScale.
+                When lag occurs deltaTime increases a lot, which may show unexpected results.
+                This value is the maximum allowed value of deltaTime.
+                <br><br>
+                By default, <code>0.1111111</code>.
+            </blockquote>
             
             
             <div class="doc-control">
-                <a class="previous" href="../time">
+                <a class="previous" href="loops">
                     <div>Previous</div>
-                    Time and Update
+                    Update loops
                 </a>
-                <a class="next" href="logic">
+                <a class="next" href="../styles">
                     <div>Next</div>
-                    Time logic
+                    Text Styles
                 </a>
             </div>
         </main>
         
         <script src="/js/main.js" type="text/javascript"></script>
-        <script src="/js/CodeOutputs.js" type="text/javascript"></script>
-        <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js" type="text/javascript"></script>
-        <script type="text/javascript">hljs.highlightAll();</script>
     </body>
 </html>

@@ -85,33 +85,25 @@
                 You are obliged to use separate sprites and not sprite sheets.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
-const sprite = new DialogueSprite(
+            <pre><span class="small-text">JavaScript</span><code class="language-js">const sprite = new DialogueSprite(
     // Name for identification
-    "",
+    "Niko OneShot",
     
     // Source file
-    ""
-);
-            </code></pre>
+    "../templates/oneshot/img/Faces/niko_speak.png"
+);</code></pre>
             
             <p>
                 And for audio clips, just do the same from sprites. But use <a href="../../../reference/DialogueSystem/DialogueAudioClip">DialogueAudioClip</a> instead.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
-const audio = new DialogueAudioClip("", "");
-            </code></pre>
+            <pre><span class="small-text">JavaScript</span><code class="language-js">const audio = new DialogueAudioClip("meow", "../templates/omori/audio/SE_meow.ogg");</code></pre>
             
             <p>
                 And to find out if they're loaded and ready for use, just check their <strong>isLoaded</strong> property.
             </p>
-
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
-alert(`loaded sprite: ${sprite.isLoaded}\nloaded audio: ${audio.isLoaded}`);
-                </code></pre>
             
-            // output
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/manual/resources/loading" data-width="280px" data-height="200px" data-refreshable="true"></div>
             
             
             <div class="doc-control">
@@ -127,6 +119,7 @@ alert(`loaded sprite: ${sprite.isLoaded}\nloaded audio: ${audio.isLoaded}`);
         </main>
         
         <script src="/js/main.js" type="text/javascript"></script>
+        <script src="/js/CodeOutputs.js" type="text/javascript"></script>
         <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js" type="text/javascript"></script>
         <script type="text/javascript">hljs.highlightAll();</script>
     </body>
