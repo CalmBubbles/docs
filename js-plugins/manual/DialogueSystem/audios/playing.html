@@ -15,19 +15,19 @@
         <!--Keywords--><meta name="keywords" content="CalmBubbles, documentation, manual, JavaScript, html, js, DialogueSystem, dialogue, system, audios, playing, sources, DialogueAudioSource">
         
         <!-------Description-->
-        <meta property="og:description" content="The official DialogueSystem.js Manual"/>
-        <meta name="description" content="The official DialogueSystem.js Manual"/>
+        <meta property="og:description" content="Playing clips, using audio clips and how audio behaves"/>
+        <meta name="description" content="Playing clips, using audio clips and how audio behaves"/>
         
         <!-------Image-->
         <meta property="og:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
-        <!--Width--><meta property="og:image:width" content="360"/>
-        <!--Height--><meta property="og:image:height" content="360"/>
+        <!--Width--><meta property="og:image:width" content="440"/>
+        <!--Height--><meta property="og:image:height" content="440"/>
         <!--Alt--><meta property="og:image:alt" content="DialogueSystem.js Manual: Audios - Playing and audio sources"/>
         
         <!-------Twitter Card-->
         <!--Type--><meta name="twitter:card" content="summary"/>
         <!--Title--><meta name="twitter:title" content="DialogueSystem.js Manual: Audios - Playing and audio sources"/>
-        <!--Description--><meta name="twitter:description" content="The official DialogueSystem.js Manual"/>
+        <!--Description--><meta name="twitter:description" content="Playing clips, using audio clips and how audio behaves"/>
         <!--Image--><meta name="twitter:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
         
         
@@ -87,23 +87,46 @@
                 And for pitch, it's just the <a href="../../../reference/DialogueSystem/DialogueAudioSource/pitch">pitch property</a>.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">const testClip = new DialogueAudioClip("test", "audio/test.ogg");
 
-            </code></pre>
+// An easy way of waiting for an audio clip to load
+// is by adding it to the manager's audio array
+diaManager.config.audios.items.push(testClip);
+
+async function Main ()
+{
+    const audioSource = new DialogueAudioSource();
+    audioSource.volume = 0.4; // change volume to 40%
+
+    audioSource.Play(testClip); // play the clip
+}</code></pre>
             
             <p>
                 Audios played using the system are stackable and will not stop each other. Also take note that once audio is played, it cannot be paused or stopped.
             </p>
             
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">// You can do this if you wan't to
+// but DON'T, this will pop your eardrums
 
-            </code></pre>
+audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip);
+audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip);
+audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip);
+audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip);
+audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip);
+audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip);
+audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip);
+audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip);
+audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip);
+audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip);
+audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip);
+audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip);
+audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip); audioSource.Play(testClip);</code></pre>
             
             <p>
                 If you don't want to make a new audio source, you can just use the <a href="../../../reference/DialogueSystem/DialogueAudioSource/global">global instance</a>.
             </p>
             
-            // output
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/templates/undertale?s=..%2F..%2Fmanual%2Faudios%2Fplaying" data-width="full" data-relHeight="28" data-refreshable="true"></div>
             
             
             <div class="doc-control">
@@ -119,6 +142,7 @@
         </main>
         
         <script src="/js/main.js" type="text/javascript"></script>
+        <script src="/js/CodeOutputs.js" type="text/javascript"></script>
         <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js" type="text/javascript"></script>
         <script type="text/javascript">hljs.highlightAll();</script>
     </body>

@@ -15,19 +15,19 @@
         <!--Keywords--><meta name="keywords" content="CalmBubbles, documentation, manual, JavaScript, html, js, DialogueSystem, dialogue, system, styles, text, mixing">
         
         <!-------Description-->
-        <meta property="og:description" content="The official DialogueSystem.js Manual"/>
-        <meta name="description" content="The official DialogueSystem.js Manual"/>
+        <meta property="og:description" content="Mixing styles and how it works"/>
+        <meta name="description" content="Mixing styles and how it works"/>
         
         <!-------Image-->
         <meta property="og:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
-        <!--Width--><meta property="og:image:width" content="360"/>
-        <!--Height--><meta property="og:image:height" content="360"/>
+        <!--Width--><meta property="og:image:width" content="440"/>
+        <!--Height--><meta property="og:image:height" content="440"/>
         <!--Alt--><meta property="og:image:alt" content="DialogueSystem.js Manual: Text Styles - Making a mix"/>
         
         <!-------Twitter Card-->
         <!--Type--><meta name="twitter:card" content="summary"/>
         <!--Title--><meta name="twitter:title" content="DialogueSystem.js Manual: Text Styles - Making a mix"/>
-        <!--Description--><meta name="twitter:description" content="The official DialogueSystem.js Manual"/>
+        <!--Description--><meta name="twitter:description" content="Mixing styles and how it works"/>
         <!--Image--><meta name="twitter:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
         
         
@@ -86,14 +86,56 @@
                 First you need to have a DialogueStyle object, which will be the default style of the mix. Then you can call the default style's <a href="../../../reference/DialogueSystem/DialogueStyle/Create">Create</a> method and pass the other styles onto it. The Create method will return a new DialogueStyle object, containing the mixed properties.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">// default style
+const defaultStyle = new DialogueStyle({
+    color: "lightblue",
+    fontSize: "1.2em",
+    textDecoration: "underline",
+    fontFamily: "monospace",
+    fontWeight: "bold"
+});
 
-            </code></pre>
+
+// other styles
+const whiteText = new DialogueStyle({
+    color: "white"
+});
+
+const smolSize = new DialogueStyle({
+    fontSize: "0.1em"
+})
+
+const noBolderline = new DialogueStyle({
+    fontWeight: "normal",
+    textDecoration: "none"
+});
+
+
+// new style
+const newStyle = defaultStyle.Create(
+    whiteText,
+    noBolderline,
+    new DialogueStyle({
+        fontWeight: "200"
+    }),
+    smolSize
+);
+
+// this is also just
+new DialogueStyle({
+    color: "white",
+    fontSize: "0.1em",
+    textDecoration: "none",
+    fontFamily: "monospace",
+    fontWeight: "200"
+});</code></pre>
             
             <p>
-                The mixing works by overriding the default properties with the properties of the other styles consecutively. But if one of the other styles' property is blank or null, the previous property will not be overriden.
-                
-                // img
+                The mixing works by overriding the default properties with the properties of the other styles consecutively.
+                If one of the other styles' property is <code>null</code>, it is disregarded, the last property value will be used instead.
+                <br><br>
+                Basically it works like the rule of overriding.
+                Property values will not be overriden until specified with a value that is NOT <code>null</code>.
             </p>
             
             

@@ -15,19 +15,19 @@
         <!--Keywords--><meta name="keywords" content="CalmBubbles, documentation, manual, JavaScript, html, js, DialogueSystem, dialogue, system, animations, text, css, keyframe, idle, transitions">
         
         <!-------Description-->
-        <meta property="og:description" content="The official DialogueSystem.js Manual"/>
-        <meta name="description" content="The official DialogueSystem.js Manual"/>
+        <meta property="og:description" content="The simple parts of text animations and using them"/>
+        <meta name="description" content="The simple parts of text animations and using them"/>
         
         <!-------Image-->
         <meta property="og:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
-        <!--Width--><meta property="og:image:width" content="360"/>
-        <!--Height--><meta property="og:image:height" content="360"/>
+        <!--Width--><meta property="og:image:width" content="440"/>
+        <!--Height--><meta property="og:image:height" content="440"/>
         <!--Alt--><meta property="og:image:alt" content="DialogueSystem.js Manual: Animations - Text animations"/>
         
         <!-------Twitter Card-->
         <!--Type--><meta name="twitter:card" content="summary"/>
         <!--Title--><meta name="twitter:title" content="DialogueSystem.js Manual: Animations - Text animations"/>
-        <!--Description--><meta name="twitter:description" content="The official DialogueSystem.js Manual"/>
+        <!--Description--><meta name="twitter:description" content="The simple parts of text animations and using them"/>
         <!--Image--><meta name="twitter:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
         
         
@@ -90,28 +90,59 @@
                 Now to use text animations. You need to add a new instance of the animation into the <a href="../../../reference/DialogueSystem/DialogueManagerConfig/animations">animation array</a> of your manager config, this makes the animation accessible by the manager. By default, DialogueTextCSSAnimation is already there.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">// Though not needed for DialogueTextCSSAnimation
+// here's ways of adding animations to the array
 
-            </code></pre>
+
+// Here's one way
+diaManager.config.animations.items.push(new AnimationName());
+
+
+// It's more efficient to add several animations to the manager this way
+diaManager.config.animations.items = [
+    new AnimationName(),
+    new AnotherAnimation()
+];
+
+// But that removes the pre-defined DialogueTextCSSAnimation.
+// You can keep it though by doing this
+diaManager.config.animations.items = [
+    new DialogueTextCSSAnimation(), // &lt;----
+    new AnimationName(),
+    new AnotherAnimation()
+];</code></pre>
             
             <p>
                 Before using the animation, you've got to remember that text animations have configuration properties. Make sure to set these.
             </p>
                 
             <blockquote id="config-properties">
-                <strong><a href="../../../reference/DialogueSystem/NamedItem/name">name</a></strong> - name of the animation used for identification. For DialogueTextCSSAnimation, by default this is <code>"css"</code>.<br>
+                <strong><a href="../../../reference/DialogueSystem/NamedItem/name">name</a></strong> - name of the animation used for identification. By default in DialogueTextCSSAnimation, <code>"css"</code>.<br>
                 <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/duration">duration</a></strong> - number that sets the duration of the animation in seconds.<br>
-                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/wait">wait</a></strong> - when true, the animation will be waited to finish before moving to the next tasks.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/wait">wait</a></strong> - when true, the animation will be waited to finish before moving to the next tasks. Default, <code>false</code>.<br>
                 <strong><a href="../../../reference/DialogueSystem/DialogueTextAnimation/loop">loop</a></strong> - tells whether the animation should play again when done.
             </blockquote>
             
             <p>
-                You can configure these by changing the properties of the animation instance stored in the manager config, or by pre-defining them in its class.
+                You can configure these by changing the properties of the animation instance, or by pre-defining them in its class.
             </p>
                 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">// By instance
 
-            </code></pre><br>
+const anAnimation = new AnimationName();
+anAnimation.name = "Yes you can use spaces here.";
+
+diaManager.config.animations.items.push(anAnimation);
+
+
+// Pre-define by class
+
+class AnimationName extends DialogueTextAnimation
+{
+    name = "aaaaaaaaaaaaaaaaaaaaaaaaaa";
+}
+
+diaManager.config.animations.items.push(new AnimationName());</code></pre><br><br>
             
             
             <h3>Using the animation for idle</h3>
@@ -120,25 +151,45 @@
                 Call the <a href="../../../reference/DialogueSystem/DialogueManager/Type">Type</a> method with a <a href="../../../reference/DialogueSystem/DialogueData">DialogueData</a> that has its <a href="../../../reference/DialogueSystem/DialogueData/animation">animation property</a> as the target animation's name.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
-
-            </code></pre>
+            <pre><span class="small-text">JavaScript</span><code class="language-js">await diaManager.Type("Totally random text.", 1, new DialogueData({
+    // Use text animation named "css" (DialogueTextCSSAnimation)
+    animation: "css"
+}));</code></pre>
             
             <p>
                 When you call the Type method, nothing happens yet. This is because DialogueTextCSSAnimation has one <a href="params">animation parameter</a> you need to set. It's the animation property, where you state the CSS keyframe animation. You also set the animation's duration here.
             </p>
                 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
-
-            </code></pre>
+            <pre><span class="small-text">JavaScript</span><code class="language-js">await diaManager.Type("Totally random text.", 1, new DialogueData({
+    animation: "css",
+    animationParams : [
+        new Property(
+            "animation", // property name
+            "1s keyframe-animation-name" // property value
+        )
+    ]
+}));</code></pre><br>
             
             <p>
                 A simple example of using text idle animations, is by adding rgb color.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">CSS</span><code class="language-css">@keyframes rgb-animation
+{
+    0% { color: red; }
+    33% { color: green; }
+    66% { color: blue; }
+    100% { color: red; }
+}</code></pre>
 
-            </code></pre><br>
+            <pre><span class="small-text">JavaScript</span><code class="language-js">await diaManager.Type("rgb text", 1, new DialogueData({
+    audio: "sans",
+    portrait: "sans_chuckle",
+    animation: "css",
+    animationParams: [new Property("animation", "rgb-animation infinite linear 1s")]
+}));</code></pre>
+            
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/templates/undertale?s=..%2F..%2Fmanual%2Fanimations%2Ftext%2Fidle" data-width="full" data-relHeight="28" data-refreshable="true"></div><br><br>
             
             
             <h3>To use the animation for transitions</h3>
@@ -152,6 +203,9 @@
 
             <blockquote>
                 <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/animation">animation</a></strong> - is now used to target a DialogueTextAnimation rather than a CSS keyframe animation.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/wait">wait</a></strong> - should we wait for this animation to finish?
+                By default, this is <code>true</code>.
+                Remember that this overrides the DialogueTextAnimation's wait property.<br>
                 <strong><a href="../../../reference/DialogueSystem/DialogueAnimationPreset/animationParams">animationParams</a></strong> - array of animation parameters. This is also present in DialogueAnimation objects, but useless.
             </blockquote>
             
@@ -165,21 +219,39 @@
             </blockquote>
             
             <p>
-                Note that text transitions can never loop. DialogueTextAnimation instances will always have their loop property as <code>false</code>.
-            </p>
-                
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
-
-            </code></pre>
+                Note that text transitions can never loop.
+            </p><br>
             
             <p>
                 A simple example of using text transitions, is by adding opacity fade when text is cleared.
             </p>
-                
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
-                
-            </code></pre>
+
+            <pre><span class="small-text">CSS</span><code class="language-css">@keyframes move-animation
+{
+    from { left: 0; }
+    to { left: 100vw; }
+}
+
+@keyframes move-step-animation
+{
+    0% { transform: none; }
+    20% { transform: rotate(30deg); }
+    40% { transform: translateY(-17%) rotate(18deg); }
+    50% { transform: translateY(-20%) rotate(10deg); }
+    70% { transform: rotate(-30deg); }
+    78% { transform: rotate(-8deg); }
+    100% { transform: none; }
+}</code></pre>
             
+            <pre><span class="small-text">JavaScript</span><code class="language-js">diaManager.animation.text.onClear = new DialogueAnimationPreset({
+    animation: "css",
+    animationParams: [new Property("animation", "1s ease-in move-animation, move-step-animation infinite ease-in-out 0.15s")],
+    duration: 1,
+    wait: false
+});</code></pre>
+
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/templates/undertale?s=..%2F..%2Fmanual%2Fanimations%2Ftext%2Ftransition" data-width="full" data-relHeight="28" data-refreshable="true"></div>
+
             
             <div class="doc-control">
                 <a class="previous" href="basics">
@@ -194,6 +266,7 @@
         </main>
         
         <script src="/js/main.js" type="text/javascript"></script>
+        <script src="/js/CodeOutputs.js" type="text/javascript"></script>
         <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js" type="text/javascript"></script>
         <script type="text/javascript">hljs.highlightAll();</script>
     </body>

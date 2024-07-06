@@ -15,19 +15,19 @@
         <!--Keywords--><meta name="keywords" content="CalmBubbles, documentation, manual, JavaScript, html, js, DialogueSystem, dialogue, system, styles, text, object, DialogueStyle">
         
         <!-------Description-->
-        <meta property="og:description" content="The official DialogueSystem.js Manual"/>
-        <meta name="description" content="The official DialogueSystem.js Manual"/>
+        <meta property="og:description" content="DialogueStyle objects and styling for one type iteration"/>
+        <meta name="description" content="DialogueStyle objects and styling for one type iteration"/>
         
         <!-------Image-->
         <meta property="og:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
-        <!--Width--><meta property="og:image:width" content="360"/>
-        <!--Height--><meta property="og:image:height" content="360"/>
+        <!--Width--><meta property="og:image:width" content="440"/>
+        <!--Height--><meta property="og:image:height" content="440"/>
         <!--Alt--><meta property="og:image:alt" content="DialogueSystem.js Manual: Text Styles - Style object"/>
         
         <!-------Twitter Card-->
         <!--Type--><meta name="twitter:card" content="summary"/>
         <!--Title--><meta name="twitter:title" content="DialogueSystem.js Manual: Text Styles - Style object"/>
-        <!--Description--><meta name="twitter:description" content="The official DialogueSystem.js Manual"/>
+        <!--Description--><meta name="twitter:description" content="DialogueStyle objects and styling for one type iteration"/>
         <!--Image--><meta name="twitter:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
         
         
@@ -86,15 +86,20 @@
                 The easiest way though is by creating a new <a href="../../../reference/DialogueSystem/DialogueStyle">DialogueStyle</a> object. Then calling the <a href="../../../reference/DialogueSystem/DialogueManager/Type">Type</a> method with a <a href="../../../reference/DialogueSystem/DialogueData">DialogueData</a> with it's <a href="../../../reference/DialogueSystem/DialogueData/style">style property</a> being that style object.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
-            
-            </code></pre>
+            <pre><span class="small-text">JavaScript</span><code class="language-js">await diaManager.Type("Hey BASIL, ", 1.4, new DialogueData({
+    audio: "default",
+    portrait: "kel_dark",
+    delayAfter: 0.6,
+
+    // increase font size ONLY in this call
+    style: new DialogueStyle({ fontSize: "1.4em" })
+}));</code></pre>
             
             <p>
                 Style objects are also used by managers mainly to store it's text styles in it's <a href="../../../reference/DialogueSystem/DialogueManager/style">style property</a>.
             </p>
             
-            // output
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/templates/omori?s=..%2F..%2Fmanual%2Fstyles%2Fobject" data-width="full" data-relHeight="42" data-refreshable="true"></div>
             
             
             <div class="doc-control">
@@ -110,6 +115,7 @@
         </main>
         
         <script src="/js/main.js" type="text/javascript"></script>
+        <script src="/js/CodeOutputs.js" type="text/javascript"></script>
         <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js" type="text/javascript"></script>
         <script type="text/javascript">hljs.highlightAll();</script>
     </body>

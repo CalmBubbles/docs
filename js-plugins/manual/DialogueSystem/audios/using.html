@@ -15,19 +15,19 @@
         <!--Keywords--><meta name="keywords" content="CalmBubbles, documentation, manual, JavaScript, html, js, DialogueSystem, dialogue, system, audios, using, playing">
         
         <!-------Description-->
-        <meta property="og:description" content="The official DialogueSystem.js Manual"/>
-        <meta name="description" content="The official DialogueSystem.js Manual"/>
+        <meta property="og:description" content="Play audios on typing iterations"/>
+        <meta name="description" content="Play audios on typing iterations"/>
         
         <!-------Image-->
         <meta property="og:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
-        <!--Width--><meta property="og:image:width" content="360"/>
-        <!--Height--><meta property="og:image:height" content="360"/>
+        <!--Width--><meta property="og:image:width" content="440"/>
+        <!--Height--><meta property="og:image:height" content="440"/>
         <!--Alt--><meta property="og:image:alt" content="DialogueSystem.js Manual: Audios - Using audios"/>
         
         <!-------Twitter Card-->
         <!--Type--><meta name="twitter:card" content="summary"/>
         <!--Title--><meta name="twitter:title" content="DialogueSystem.js Manual: Audios - Using audios"/>
-        <!--Description--><meta name="twitter:description" content="The official DialogueSystem.js Manual"/>
+        <!--Description--><meta name="twitter:description" content="Play audios on typing iterations"/>
         <!--Image--><meta name="twitter:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
         
         
@@ -86,27 +86,29 @@
                 To do that, you gotta add your audio clips in the <a href="../../../reference/DialogueSystem/DialogueManagerConfig/audios">audio array</a> of your manager config. This makes those clips accessible by the manager
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">diaManager.config.audios.items.push(new DialogueAudioClip("default", "audio/text.ogg"));
 
-            </code></pre>
+// When using `DialogueAudioArray` objects
+// you can just do this:
+// 
+// diaManager.config.audios = new DialogueAudioArray([
+//     { name : "default", src : "audio/text.ogg" }
+// ]);</code></pre>
             
             <p>
                 Now you can call the <a href="../../../reference/DialogueSystem/DialogueManager/Type">Type</a> method with a <a href="../../../reference/DialogueSystem/DialogueData">DialogueData</a> that has its <a href="../../../reference/DialogueSystem/DialogueData/audio">audio property</a> set to the name of the clip you want to hear.
             </p>
                 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
-
-            </code></pre>
+            <pre><span class="small-text">JavaScript</span><code class="language-js">await diaManager.Type("The sound used here is just me hitting the table.", 1, new DialogueData({
+    // Use audio named "default"
+    audio: "default"
+}));</code></pre>
 
             <p>
                 To change how frequent audio plays, use the manager's <a href="../../../reference/DialogueSystem/DialogueManager/soundInterval">soundInterval</a> property.
             </p>
-
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
-                
-            </code></pre>
             
-            // output
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/templates/custom?s=..%2F..%2Fmanual%2Faudios%2Fusing" data-width="full" data-relHeight="26.5" data-refreshable="true"></div>
             
             
             <div class="doc-control">
@@ -122,6 +124,7 @@
         </main>
         
         <script src="/js/main.js" type="text/javascript"></script>
+        <script src="/js/CodeOutputs.js" type="text/javascript"></script>
         <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js" type="text/javascript"></script>
         <script type="text/javascript">hljs.highlightAll();</script>
     </body>

@@ -20,8 +20,8 @@
         
         <!-------Image-->
         <meta property="og:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
-        <!--Width--><meta property="og:image:width" content="360"/>
-        <!--Height--><meta property="og:image:height" content="360"/>
+        <!--Width--><meta property="og:image:width" content="440"/>
+        <!--Height--><meta property="og:image:height" content="440"/>
         <!--Alt--><meta property="og:image:alt" content="DialogueSystem.js Scripting Reference: DialogueManager.SetActive"/>
         
         <!-------Twitter Card-->
@@ -92,46 +92,45 @@
                 You are required to use this method to enable most of the manager's methods.
             </p>
             
-            <pre><span class="small-text">JavaScript</span><code class="language-js">const dialogueBox = document.querySelector("div");
-
-const manager = new DialogueManager(dialogueBox);
-
-manager.animation.box.onEnable = new DialogueAnimation({
-    animation : "box",
-    duration : 0.25
-});
-
-manager.Once(DialogueEvent.Load, async () =&gt; {
-    // Not all tasks will run
-    await manager.Type("I can't talk,", 0.25);
-    await DialogueLoop.Delay(1);
-    await manager.Type(" h-help...", 0.125);
-    await DialogueLoop.Delay(5);
+            <pre><span class="small-text">JavaScript</span><code class="language-js">// These `Type` calls will not run
+await diaManager.Type("...", 0.04);
+await DialogueLoop.Delay(2);
+await diaManager.ClearText();
+await diaManager.Type("h-", 1);
+await DialogueLoop.Delay(0.4);
+await diaManager.Type("help...", 0.7);
+await DialogueLoop.Delay(1.4);
+await diaManager.ClearText();
+await diaManager.Type("I can't... ", 0.6);
+await DialogueLoop.Delay(0.8);
+await diaManager.Type("breathe...", 0.6);
+await DialogueLoop.Delay(2);
+await diaManager.ClearText();
+await diaManager.Type("...", 0.02);
+await DialogueLoop.Delay(3);
     
-    // Enable the system
-    await manager.SetActive(true);
+// Enable the system
+await diaManager.SetActive(true);
     
-    // All tasks will run
-    await manager.Type("Oh hey,", 0.75);
-    await DialogueLoop.Delay(0.5);
-    await manager.Type(" I can talk now.", 1);
-    await DialogueLoop.Delay(1.5);
-    await manager.ClearText();
-    await manager.Type("Uhhhhhhhhh...", 0.25);
-    await DialogueLoop.Delay(1.25);
-    await manager.ClearText();
-    await manager.Type("Anyway,", 1);
-    await DialogueLoop.Delay(0.25);
-    await manager.Type(" I was going to tell you about-", 1.25);
+// These will run
+await diaManager.Type("...", 0.04);
+await DialogueLoop.Delay(2);
+await diaManager.ClearText();
+await diaManager.Type("Finally...", 1);
+await DialogueLoop.Delay(1.5);
+await diaManager.ClearText();
+await diaManager.Type("I can finally breathe.", 0.8);
+await DialogueLoop.Delay(2);
+await diaManager.ClearText();
+await diaManager.Type("I hope this example goes w-", 1);
     
-    // Disable the system
-    await manager.SetActive(false);
+// Disable the system
+await diaManager.SetActive(false);
     
-    // This task will not run
-    await manager.Type("WHYYYYYYYYYYYY!??!", 0.125);
-});</code></pre>
+// Internal screaming
+await diaManager.Type("HEEEELLLLLLLLLLLPPPPPP!!!", 1.4);</code></pre>
             
-            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/reference/DialogueManager/SetActive.html" data-width="full" data-relHeight="26.5" data-refreshable="true"></div>
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/templates/custom?s=..%2F..%2Freference%2FDialogueManager%2FSetActive" data-width="full" data-relHeight="26.5" data-refreshable="true"></div>
         </main>
         
         <script src="/js/main.js" type="text/javascript"></script>

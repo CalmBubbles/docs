@@ -15,19 +15,19 @@
         <!--Keywords--><meta name="keywords" content="CalmBubbles, documentation, manual, JavaScript, html, js, DialogueSystem, dialogue, system, sprites, bug, portraits, bugfix, text, line, css">
         
         <!-------Description-->
-        <meta property="og:description" content="The official DialogueSystem.js Manual"/>
-        <meta name="description" content="The official DialogueSystem.js Manual"/>
+        <meta property="og:description" content="Fix a &quot;bug&quot; that breaks the text line when portraits are active"/>
+        <meta name="description" content="Fix a &quot;bug&quot; that breaks the text line when portraits are active"/>
         
         <!-------Image-->
         <meta property="og:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
-        <!--Width--><meta property="og:image:width" content="360"/>
-        <!--Height--><meta property="og:image:height" content="360"/>
+        <!--Width--><meta property="og:image:width" content="440"/>
+        <!--Height--><meta property="og:image:height" content="440"/>
         <!--Alt--><meta property="og:image:alt" content="DialogueSystem.js Manual: Sprites - Broken text line"/>
         
         <!-------Twitter Card-->
         <!--Type--><meta name="twitter:card" content="summary"/>
         <!--Title--><meta name="twitter:title" content="DialogueSystem.js Manual: Sprites - Broken text line"/>
-        <!--Description--><meta name="twitter:description" content="The official DialogueSystem.js Manual"/>
+        <!--Description--><meta name="twitter:description" content="Fix a &quot;bug&quot; that breaks the text line when portraits are active"/>
         <!--Image--><meta name="twitter:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
         
         
@@ -86,14 +86,15 @@
                 It can be used within CSS to fix the text line problem, by creating a new style to go on top the default style of the dialogue line. It can be used like:
             </p>
 
-            <pre><span class="small-text">CSS</span><code class="language-css">
-.dialogue-box[data-portrait-enabled="true"] .dialogue-line
+            <pre><span class="small-text">CSS</span><code class="language-css">.dialogue-box[data-portrait-enabled="true"] .dialogue-line
 {
-    /* Style fix here */
-}
-                </code></pre>
+    /* ... your style fix here */
+
+    /* The one used in example: */
+    width: calc(var(--scaler) * 888vw);
+}</code></pre>
             
-            // output
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/templates/undertale?s=..%2F..%2Fmanual%2Fsprites%2Fbug" data-width="full" data-relHeight="65" data-refreshable="true"></div>
             
             
             <div class="doc-control">
@@ -109,6 +110,7 @@
         </main>
         
         <script src="/js/main.js" type="text/javascript"></script>
+        <script src="/js/CodeOutputs.js" type="text/javascript"></script>
         <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js" type="text/javascript"></script>
         <script type="text/javascript">hljs.highlightAll();</script>
     </body>

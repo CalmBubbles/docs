@@ -15,19 +15,19 @@
         <!--Keywords--><meta name="keywords" content="CalmBubbles, documentation, manual, JavaScript, html, js, DialogueSystem, dialogue, system, resources, paths, arrays, loading, multiple, sprite, audio, DialogueSpriteArray, DialogueAudioArray">
         
         <!-------Description-->
-        <meta property="og:description" content="The official DialogueSystem.js Manual"/>
-        <meta name="description" content="The official DialogueSystem.js Manual"/>
+        <meta property="og:description" content="Source files and directories"/>
+        <meta name="description" content="Source files and directories"/>
         
         <!-------Image-->
         <meta property="og:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
-        <!--Width--><meta property="og:image:width" content="360"/>
-        <!--Height--><meta property="og:image:height" content="360"/>
+        <!--Width--><meta property="og:image:width" content="440"/>
+        <!--Height--><meta property="og:image:height" content="440"/>
         <!--Alt--><meta property="og:image:alt" content="DialogueSystem.js Manual: Resources - File paths"/>
         
         <!-------Twitter Card-->
         <!--Type--><meta name="twitter:card" content="summary"/>
         <!--Title--><meta name="twitter:title" content="DialogueSystem.js Manual: Resources - File paths"/>
-        <!--Description--><meta name="twitter:description" content="The official DialogueSystem.js Manual"/>
+        <!--Description--><meta name="twitter:description" content="Source files and directories"/>
         <!--Image--><meta name="twitter:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
         
         
@@ -86,23 +86,46 @@
                 But if you're using resource arrays, you can lessen confusion. In the constructor, pass the resources' directory path as a second parameter. This will be applied to all resources in that array.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">diaManager.config.sprites = new DialogueSpriteArray(
+    [
+        { name : "aimottle_unsure", src : "aimottle/Unsure.png" },
+        { name : "aimottle_angry", src : "aimottle/Angry.png" },
+        { name : "aimottle", src : "aimottle/Neutral.png" },
+        { name : "claire_sigh", src : "claire/Sigh.png" },
+        { name : "claire_dude", src : "claire/Aghast.png" },
+        { name : "claire_mad", src : "claire/Mad.png" },
+        { name : "claire_dizzy", src : "claire/Dizzy.png" },
+        { name : "woof_eep", src : "woof/Sleep.png" },
+        { name : "woof", src : "woof/Awake.png" },
+        { name : "zera_look", src : "zera/Look.png" },
+        { name : "zera_pout", src : "zera/Pout.png" },
+        { name : "zera_smile", src : "zera/Smile.png" }
+    ],
 
-            </code></pre>
+    // directory as text pointing to location
+    "img/faces"
+);</code></pre>
             
             <p>
                 You can set the array's directory to a text pointing to the location, or use <a href="../../../reference/DialogueSystem/DialogueDirectoryType">DialogueDirectoryType</a>.
                 <br><br>
                 By default, resource arrays have their directory path as <a href="../../../reference/DialogueSystem/DialogueDirectoryType/Root">DialogueDirectoryType.Root</a> or the page's root location.
-                <br><br>
-                You can also set the directory to the current page's location with <a href="../../../reference/DialogueSystem/DialogueDirectoryType/Same">DialogueDirectoryType.Same</a>. This will make the resources have their file paths relative to the current page.
+                You can also set the directory to the current page's location with <a href="../../../reference/DialogueSystem/DialogueDirectoryType/Same">DialogueDirectoryType.Same</a>. This will make the resources fetch the files from the page's location.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">diaManager.config.audios = new DialogueAudioArray(
+    [
+        { name : "aimottle", src : "audio/aimottle.ogg" },
+        { name : "claire", src : "audio/claire.ogg" },
+        { name : "woof", src : "audio/woof.ogg" },
+        { name : "zera", src : "audio/zera.ogg" }
+    ],
 
-            </code></pre>
+    // directory as same as page's
+    DialogueDirectoryType.Same
+);</code></pre>
             
-            // output
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/templates/dep?s=..%2F..%2Fmanual%2Fresources%2Fpaths" data-width="full" data-relHeight="22.5" data-refreshable="true"></div><br>
             
             
             <div class="doc-control">
@@ -118,6 +141,7 @@
         </main>
         
         <script src="/js/main.js" type="text/javascript"></script>
+        <script src="/js/CodeOutputs.js" type="text/javascript"></script>
         <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js" type="text/javascript"></script>
         <script type="text/javascript">hljs.highlightAll();</script>
     </body>

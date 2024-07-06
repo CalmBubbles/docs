@@ -15,19 +15,19 @@
         <!--Keywords--><meta name="keywords" content="CalmBubbles, documentation, manual, JavaScript, html, js, DialogueSystem, dialogue, system, animations, custom, text">
         
         <!-------Description-->
-        <meta property="og:description" content="The official DialogueSystem.js Manual"/>
-        <meta name="description" content="The official DialogueSystem.js Manual"/>
+        <meta property="og:description" content="Making custom text animations"/>
+        <meta name="description" content="Making custom text animations"/>
         
         <!-------Image-->
         <meta property="og:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
-        <!--Width--><meta property="og:image:width" content="360"/>
-        <!--Height--><meta property="og:image:height" content="360"/>
+        <!--Width--><meta property="og:image:width" content="440"/>
+        <!--Height--><meta property="og:image:height" content="440"/>
         <!--Alt--><meta property="og:image:alt" content="DialogueSystem.js Manual: Animations - Custom text animations"/>
         
         <!-------Twitter Card-->
         <!--Type--><meta name="twitter:card" content="summary"/>
         <!--Title--><meta name="twitter:title" content="DialogueSystem.js Manual: Animations - Custom text animations"/>
-        <!--Description--><meta name="twitter:description" content="The official DialogueSystem.js Manual"/>
+        <!--Description--><meta name="twitter:description" content="Making custom text animations"/>
         <!--Image--><meta name="twitter:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
         
         
@@ -77,7 +77,7 @@
             <h2>Custom text animations</h2>
             
             <p>
-                In <a href="params">one of the previous topics</a>, you are taught how to animate text in a simple way using <a href="../../../reference/DialogueSystem/DialogueTextCSSAnimation">DialogueTextCSSAnimation</a> objects. This time we will be making custom animations.
+                In <a href="text">one of the previous topics</a>, you are taught how to animate text in a simple way using <a href="../../../reference/DialogueSystem/DialogueTextCSSAnimation">DialogueTextCSSAnimation</a> objects. This time we will be making custom animations.
                 <br><br>
                 To start making animations, you've got to make a class inheriting the <a href="../../../reference/DialogueSystem/DialogueTextAnimation">DialogueTextAnimation</a> class. And within the class there are methods used to create behaviors.
             </p>
@@ -164,33 +164,25 @@ position = I * sin(s * t + w * i)</code></pre>
                 
             <pre><span class="small-text">JavaScript</span><code class="language-js">diaManager.config.animations.items.push(new TextWave());
 
+async function Main ()
+{
+    // ...
 
-/*
+    await diaManager.Type("looooook what I got.", 1, new DialogueData({
+        audio: "default",
 
-It's more efficient to add several animations to the manager this way.
+        // Use text animation named "wave"
+        animation: "wave"
+    }));
 
-    diaManager.config.animations.items = [
-        new TextWave(),
-        new FadingTextWave()
-    ];
-
-
-But that removes the pre-defined DialogueTextCSSAnimation.
-You can keep it though by doing this.
-
-    diaManager.config.animations.items = [
-        new DialogueTextCSSAnimation(),
-        new TextWave(),
-        new FadingTextWave()
-    ];
-
-*/</code></pre>
+    // ...
+}</code></pre>
             
             <p>
                 "What if I want to modify the variables on Type call?". Well you can change the variables to be animation parameters. You can learn them <a href="params">here</a>.
             </p>
 
-            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/manual/templates/omori?s=..%2F..%2Fanimations%2Fcustom" data-width="full" data-relHeight="42" data-refreshable="true"></div>
+            <div class="codeoutputframe" data-src="/docs-examples/js-plugins/DialogueSystem/templates/omori?s=..%2F..%2Fmanual%2Fanimations%2Fcustom" data-width="full" data-relHeight="42" data-refreshable="true"></div>
             
             
             <div class="doc-control">

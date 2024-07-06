@@ -15,19 +15,19 @@
         <!--Keywords--><meta name="keywords" content="CalmBubbles, documentation, manual, JavaScript, html, js, DialogueSystem, dialogue, system, animations, params, parameters, text, idle, transitions">
         
         <!-------Description-->
-        <meta property="og:description" content="The official DialogueSystem.js Manual"/>
-        <meta name="description" content="The official DialogueSystem.js Manual"/>
+        <meta property="og:description" content="Working with text animation parameters"/>
+        <meta name="description" content="Working with text animation parameters"/>
         
         <!-------Image-->
         <meta property="og:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
-        <!--Width--><meta property="og:image:width" content="360"/>
-        <!--Height--><meta property="og:image:height" content="360"/>
+        <!--Width--><meta property="og:image:width" content="440"/>
+        <!--Height--><meta property="og:image:height" content="440"/>
         <!--Alt--><meta property="og:image:alt" content="DialogueSystem.js Manual: Animations - Animation parameters"/>
         
         <!-------Twitter Card-->
         <!--Type--><meta name="twitter:card" content="summary"/>
         <!--Title--><meta name="twitter:title" content="DialogueSystem.js Manual: Animations - Animation parameters"/>
-        <!--Description--><meta name="twitter:description" content="The official DialogueSystem.js Manual"/>
+        <!--Description--><meta name="twitter:description" content="Working with text animation parameters"/>
         <!--Image--><meta name="twitter:image" content="https://calmbubbles.github.io/img/js-plugins.png"/>
         
         
@@ -91,9 +91,17 @@
                 To use parameters in idle, in the Type call. Add a new <a href="../../../reference/DialogueSystem/Property">Property</a> object to the <a href="../../../reference/DialogueSystem/DialogueData/animationParams">animationParams property</a> of the <a href="../../../reference/DialogueSystem/DialogueData">DialogueData</a>.
             </p>
             
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
-
-            </code></pre><br>
+            <pre><span class="small-text">JavaScript</span><code class="language-js">await diaManager.Type("Ueueuueueueueuueueu...", 1, new DialogueData({
+    animation: "an animation name",
+    
+    // here
+    animationParams : [
+        new Property(
+            "a property", // property name
+            143 // property value
+        )
+    ]
+}));</code></pre><br>
             
             
             <h3>Using parameters in transitions</h3>
@@ -102,9 +110,20 @@
                 In transitions, there is an <a href="../../../reference/DialogueSystem/DialogueAnimationPreset/animationParams">animationParams property</a> in <a href="../../../reference/DialogueSystem/DialogueAnimationPreset">DialogueAnimationPreset</a> objects. Add a new Property object there.
             </p>
             
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">diaManager.animation.text.onAppend = new DialogueAnimationPreset({
+    animation: "non existent animation, only for example",
 
-            </code></pre><br>
+    // here
+    animationParams: [
+        new Property(
+            "another property", // name
+            true // value
+        )
+    ],
+
+    duration: 1,
+    wait: false
+});</code></pre><br>
             
             
             <h3>Making parameters</h3>
@@ -113,33 +132,75 @@
                 To make parameters, in the animation class, override or change it's <a href="../../../reference/DialogueSystem/DialogueTextAnimation/OnSet">OnSet</a> method. Make it so, that the method takes in one parameter. This is where the passed values will go through.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">class AnimationName extends DialogueTextAnimation
+{
+    name = "example";
 
-            </code></pre>
+    OnSet (properties)
+    {
+        // ...
+    }
+}</code></pre>
             
             <p>
                 Now add the properties you want to your class.
             </p>
                 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">class AnimationName extends DialogueTextAnimation
+{
+    name = "example";
 
-            </code></pre>
+    aParameter = 0;
+    anotherOne = false;
+    oneMore = "";
+
+    OnSet (properties)
+    {
+        // ...
+    }
+}</code></pre>
             
             <p>
                 In the OnSet method, set the class properties by getting its values from the method parameter. The method parameter is a <a href="../../../reference/DialogueSystem/NamedArray">NamedArray</a>, we can use its <a href="../../../reference/DialogueSystem/NamedArray/Find">Find</a> method and then use the Property's <a href="../../../reference/DialogueSystem/Property/value">value property</a>.
             </p>
             
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
+            <pre><span class="small-text">JavaScript</span><code class="language-js">class AnimationName extends DialogueTextAnimation
+{
+    name = "example";
 
-            </code></pre>
+    // Don't set default values here
+    // as they will be overridden
+    //
+    // I only added values to identify
+    // the types I wan't them to be
+    //
+    //
+    // And since they can't be modified
+    // it is recommended to turn them private
+    #aParameter = 0;
+    #anotherOne = false;
+    #oneMore = "";
+
+    OnSet (properties)
+    {
+        // Place the default values here as `null` fallbacks
+        this.#aParameter = properties.Find("aParameter").value ?? 10;
+        this.#anotherOne = properties.Find("another parameter").value ?? true;
+        this.#oneMore = properties.Find("one-more-param").value ?? "Just a string";
+    }
+}</code></pre>
             
             <p>
                 Now you can use the parameters.
             </p>
                 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">
-
-            </code></pre>
+            <pre><span class="small-text">JavaScript</span><code class="language-js">await diaManager.Type("I have no idea what text to put here.", 1, new DialogueData({
+    animation: "example",
+    animationParams : [
+        new Property("aParameter", 8),
+        new Property("one-more-param", false)
+    ]
+}));</code></pre>
             
             
             <div class="doc-control">
