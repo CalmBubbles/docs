@@ -90,14 +90,14 @@
     "Niko OneShot",
     
     // Source file
-    "../templates/oneshot/img/Faces/niko_speak.png"
+    "../../templates/oneshot/img/Faces/niko_speak.png"
 );</code></pre>
             
             <p>
                 And for audio clips, just do the same from sprites. But use <a href="../../../reference/DialogueSystem/DialogueAudioClip">DialogueAudioClip</a> instead.
             </p>
 
-            <pre><span class="small-text">JavaScript</span><code class="language-js">const audio = new DialogueAudioClip("meow", "../templates/omori/audio/SE_meow.ogg");</code></pre>
+            <pre><span class="small-text">JavaScript</span><code class="language-js">const audio = new DialogueAudioClip("meow", "../../templates/omori/audio/SE_meow.ogg");</code></pre>
             
             <p>
                 And to find out if they're loaded and ready for use, just check their <strong>isLoaded</strong> property.
