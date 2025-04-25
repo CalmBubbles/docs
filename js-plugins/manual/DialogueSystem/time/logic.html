@@ -12,7 +12,7 @@
         <!--Title--><meta property="og:title" content="DialogueSystem.js Manual: Time and Update - Time logic"/>
         <!--URL--><meta property="og:url" content="https://calmbubbles.github.io/docs/js-plugins/manual/DialogueSystem/time/logic"/>
         <!--Locale--><meta property="og:locale" content="en_US"/>
-        <!--Keywords--><meta name="keywords" content="CalmBubbles, documentation, manual, JavaScript, html, js, DialogueSystem, dialogue, system, time, logic, properties, flow, interval, frame, fps, framerate">
+        <!--Keywords--><meta name="keywords" content="CalmBubbles, documentation, manual, JavaScript, html, js, DialogueSystem, dialogue, system, time, logic, properties, flow, interval, frame, fps, framerate, vsync">
         
         <!-------Description-->
         <meta property="og:description" content="How the time flows in the system"/>
@@ -140,8 +140,9 @@ iframe
                 There are time intervals between frames, they make time more predictable and easier to use.<br>
                 If you know about games or animations, you probably know about framerate or frames per second (FPS).
                 FPS is the amount of frames to be updated in one second, this is what controls frame intervals.
-                The higher the value, the more frames get updated per second.<br>
-                To change the target FPS, use <a href="../../../reference/DialogueSystem/DialogueLoop/targetFrameRate">DialogueLoop.targetFrameRate</a>.
+                The higher the value, the more frames get updated per second.
+                <br><br>
+                To change the target FPS, use <a href="../../../reference/DialogueSystem/DialogueLoop/vSyncCount">DialogueLoop.vSyncCount</a> and <a href="../../../reference/DialogueSystem/DialogueLoop/targetFrameRate">DialogueLoop.targetFrameRate</a>.
                 <br><br>
                 The system makes sure that the time elpased between frames are fairly constant.
                 If one frame goes too fast/slow, the next frame will try to balance it out by purposely slowing/speeding it.
@@ -158,10 +159,13 @@ iframe
             </p>
 
             <blockquote>
-                <strong><a href="../../../reference/DialogueSystem/DialogueLoop/targetFrameRate">targetFrameRate</a></strong> - the target frames per second (FPS) of the system.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueLoop/vSyncCount">vSyncCount</a></strong> - vertical syncs per frame. Sets the target FPS to the display's refresh rate.<br>
+                <strong><a href="../../../reference/DialogueSystem/DialogueLoop/targetFrameRate">targetFrameRate</a></strong> - the target frames per second (FPS) of the system. Ignored when <code>vSyncCount > 0</code>
+                <br><br>
                 <strong><a href="../../../reference/DialogueSystem/DialogueLoop/unscaledDeltaTime">unscaledDeltaTime</a></strong> - the amount of seconds between the last and the current frame.<br>
                 <strong><a href="../../../reference/DialogueSystem/DialogueLoop/unscaledTime">unscaledTime</a></strong> - the time in seconds since the start of the program.
-                <strong>unscaledDeltaTime</strong> gets added to this every frame.<br>
+                <strong>unscaledDeltaTime</strong> gets added to this every frame.
+                <br><br>
                 <strong><a href="../../../reference/DialogueSystem/DialogueLoop/deltaTime">deltaTime</a></strong> - amount of seconds between last and current frame, except capped to a value and then scaled.<br>
                 <strong><a href="../../../reference/DialogueSystem/DialogueLoop/maximumDeltaTime">maximumDeltaTime</a></strong> - the maximum value of <strong>deltaTime</strong>, this is the value that deltaTime is capped to.<br>
                 <strong><a href="../../../reference/DialogueSystem/DialogueLoop/timeScale">timeScale</a></strong> - the scale that time passes, the higher the value the faster time <strong>seems</strong> to flow.
@@ -172,10 +176,10 @@ iframe
             </blockquote>
             
             <p>
-                The properties that you will most likely use are <strong>targetFrameRate</strong>, <strong>deltaTime</strong> and <strong>time</strong>.
+                The properties that you will most likely use are <strong>vSyncCount</strong>, <strong>targetFrameRate</strong>, <strong>deltaTime</strong> and <strong>time</strong>.
                 <br><br>
                 This flowchart visualizes how time in the system work.<br>
-                The target frame interval is get by <code>1 / targetFrameRate</code>, which results to something similar to <strong>deltaTime</strong>.
+                The target frame interval is get by <code>1 / Target FPS</code>, which results to something similar to <strong>deltaTime</strong>.
             </p>
 
             <img id="loop" src="/img/js-plugins/loop.svg"><br><br>

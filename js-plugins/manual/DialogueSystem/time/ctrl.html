@@ -84,19 +84,34 @@
             </p>
 
 
+            <h4><a href="../../../reference/DialogueSystem/DialogueLoop/vSyncCount">vSyncCount</a></h4>
+
+            <blockquote>
+                How many vertical syncs between frames.
+                Sets the system's target FPS to be relative to the display's refresh rate.
+                <br><br>
+                When this is <code>0</code>, then <strong>targetFrameRate</strong> is used instead.
+                <br><br>
+                Sync values<br>
+                <code>0</code> : off<br>
+                <code>1</code> (default) : use display's refresh rate. If your display's refresh rate is <strong>60 Hz</strong>, then the system uses <strong>60 FPS</strong>.<br>
+                <code>2</code> : use <strong>half</strong> of display's refresh rate. If display: <strong>60 Hz</strong>, then system: <strong>30 FPS</strong>.
+            </blockquote><br>
+
+
             <h4><a href="../../../reference/DialogueSystem/DialogueLoop/targetFrameRate">targetFrameRate</a></h4>
 
             <blockquote>
+                Ignored when <code>vSyncCount > 0</code>.
+                <br><br>
                 This is the target frames per second (FPS) of the system.
                 How frequently frame updates in one second.
                 This variable controls how the whole system runs.
                 <br><br>
-                The higher the value, the more frequent updates happen and feel smoother.
-                But the higher the value, the more power it requires to run.
-                If you set it on a high value and use it on a device that cannot handle it.
-                Rather than making the system feel smoother, you're gonna make it feel worse.
+                Can be a value <code>> 0</code> to set a target FPS.
+                Or <code>-1</code> to make the system update as fast as possible.
                 <br><br>
-                By default this is <code>60</code> FPS, which is recommended.
+                By default this is <code>-1</code>.
             </blockquote><br>
 
 
