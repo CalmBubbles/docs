@@ -184,9 +184,9 @@
     OnSet (properties)
     {
         // Place the default values here as `null` fallbacks
-        this.#aParameter = properties.Find("aParameter").value ?? 10;
-        this.#anotherOne = properties.Find("another parameter").value ?? true;
-        this.#oneMore = properties.Find("one-more-param").value ?? "Just a string";
+        this.#aParameter = properties.Find("aParameter")?.value ?? 10;
+        this.#anotherOne = properties.Find("another parameter")?.value ?? true;
+        this.#oneMore = properties.Find("one-more-param")?.value ?? "Just a string";
     }
 }</code></pre>
             
